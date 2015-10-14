@@ -162,14 +162,9 @@ Enable every option but don't render the changes immediately:
 	$("#theSelect").dynamicSelect("updateOptions","all",{"disabled":0} , false );
 
 ###remove
-Insert one or more new options to the select.
+Remove one or more new options to the select. The select gets re-rendered immediately with the desired order unless render is set to false (true by default).
 
-	$("#theSelect").dynamicSelect("add", options);
+	$("#theSelect").dynamicSelect("remove", selector, [ render ]);
 	
 ####Code examples:
-Add 2 new options and set some properties:
 
-	$("#theSelect").dynamicSelect("add", [
-			{value: "11", label: "New option 1", visible: 1},
-			{value: "12", label: "New option 2", enabled: 0}
-		]);
