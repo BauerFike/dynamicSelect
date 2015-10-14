@@ -75,3 +75,26 @@ To set more fields on each option an array of objects can be passed instead.
         }
     ];
     $("#theSelect").dynamicSelect(options);
+
+
+##Options
+
+###updateOptions
+Update a property of one or more options.
+
+####Code examples:
+Set the option with label "html3" as visible:
+
+	$("#theSelect").dynamicSelect("updateOptions",{"label":"html3"},{"visible":1});
+	
+More values for the property selector can be passed with an array.
+
+Set the options with values "value2" and "value3" as disabled:
+
+	$("#theSelect").dynamicSelect("updateOptions",{"value":["value2","value3"]},{"disabled":1});
+	
+Use the selector "all" to edit every option.
+
+Enable every option:
+
+	$("#theSelect").dynamicSelect("updateOptions","all",{"disabled":0});
