@@ -19,7 +19,6 @@
  */
 
 (function(jQuery) {
-    // custom select class
     function dynamicSelect(item, options) {
         var fixedOptions = [];
         if (options != undefined) {
@@ -73,7 +72,7 @@
         },
         /**
          * Updates the given option object property with a new value
-         * @param {array} The option object
+         * @param {option} The option object
          * @param {string} The property to update
          * @param {string} The new value to assign
          */
@@ -200,7 +199,6 @@
                     }
                 }
             });
-
             return toReturn;
         },
         updateOptions: function(selectors, newValues, render) {
@@ -209,14 +207,11 @@
             var optionsToUpdate = [];
             var temp = [];
             thisObj = this;
-
             if (selectors !== "all") {
                 jQuery.each(selectors, function(property, values) {
                     optionsToUpdate.push(thisObj.findByProperty(property, values));
 
                 });
-
-
                 if (Object.keys(selectors).length > 1) {
                     for (i = 0; i < Object.keys(selectors).length; i++) {
                         if (optionsToUpdate[i + 1] != undefined) {
@@ -231,9 +226,7 @@
                 }
             } else {
                 temp = thisObj.options.values;
-
             }
-
             jQuery.each(temp, function(k, opt) {
                 jQuery.each(newValues, function(property, value) {
                     opt[property] = value;
@@ -247,14 +240,12 @@
             el = this.item;
             values = this.options.values;
             thisObj = this;
-
             var rightClick = (function() {
                 selValues = jQuery(select).val();
                 if (selValues != null) {
                     this.updateOptions({value: selValues}, {link: ""});
                 }
             }).bind(this);
-
             var leftClick = (function() {
                 selValues = this.item.val();
                 if (selValues != null) {
@@ -262,15 +253,12 @@
                     this.updateOptions({value: selValues}, {link: 1});
                 }
             }).bind(this);
-
             jQuery(btnObjA).bind("click", function() {
                 leftClick();
             });
-
             jQuery(btnObjB).bind("click", function() {
                 rightClick();
             });
-
         }
     };
 
