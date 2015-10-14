@@ -4,15 +4,15 @@
  *  AUTHOR:       Luca Costanzi (luca.costanzi@gmail.be)
  *  --------------------------
  *  DESCRIPTION: Dynamically edit select objects with jquery
- *  This plugin binds a select with a cached version of it which can be used to dynamically re-render its options. Each option is internally stored as an object which can make use of the following properties:
- *
- *  label: (String)The text which goes between <option> tags.
- *  value: (String)The value of the <option>.
- *  classHtml: (String)The html class value.
- *  idHtml: (String)The html id value.
- *  disabled: (Boolean)1 to disable the <option>.
- *  visible: (Boolean)Set to 0 to not render the <option>.
- *  selected: (Boolean)Set to 1 to render this <option> as selected.
+ *  This plugin binds a select with a cached version of it which can be used to dynamically re-render its options. 
+ *  Each option is internally stored as an object which can make use of the following properties:
+ *      label:      (String)The text which goes between <option> tags.
+ *      value:      (String)The value of the <option>.
+ *      classHtml:  (String)The html class value.
+ *      idHtml:     (String)The html id value.
+ *      disabled:   (Boolean)1 to disable the <option>.
+ *      visible:    (Boolean)Set to 0 to not render the <option>.
+ *      selected:   (Boolean)Set to 1 to render this <option> as selected.
  *  
  *  VERSIONS:
  *  1.0	Original
