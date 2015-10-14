@@ -167,4 +167,6 @@ Remove one or more new options to the select. The select gets re-rendered immedi
 	$("#theSelect").dynamicSelect("remove", selector, [ render ]);
 	
 ####Code examples:
+Remove the options with class "removeMe".
 
+	$("#theSelect").dynamicSelect("remove",{"classHtml":"removeMe"});
