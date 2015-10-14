@@ -79,6 +79,19 @@ To set more fields on each option an array of objects can be passed instead.
 
 ##Options
 
+###add
+Insert one or more new options to the select. The select gets re-rendered immediately with the desired order unless render is set to false (true by default).
+
+	$("#theSelect").dynamicSelect("add", options, [ render ]);
+	
+####Code examples:
+Add 2 new options and set some properties:
+
+	$("#theSelect").dynamicSelect("add", [
+			{value: "11", label: "New option 1", visible: 1},
+			{value: "12", label: "New option 2", enabled: 0}
+		]);
+
 ###linkSelects
 Joins the original select to a second one. Allows options to be moved from one select to the other one.
 
@@ -112,10 +125,24 @@ Move it back to the original one:
 
 	$("#theSelect").dynamicSelect("updateOptions",{"label":"html3"},{"link":""});
 
-###updateOptions
-Update a property of one or more options.
 
-	$("#theSelect").dynamicSelect("updateOptions", selector ,  properties );
+###orderBy
+Order the options by one of its properties. The select gets re-rendered immediately with the desired order unless render is set to false (true by default).
+
+Note: the options will keep to be sorted by the given option even after new renderings (ie: even after adding new values).
+
+	$("#theSelect").dynamicSelect("orderBy", property , [ render ] );
+
+####Code examples:
+Order the options by label:
+
+	$("#theSelect").dynamicSelect("orderBy","label");
+
+
+###updateOptions
+Update a property of one or more options. The select gets re-rendered immediately with the given properties unless render is set to false (true by default).
+
+	$("#theSelect").dynamicSelect("updateOptions", selector ,  properties , [ render ]);
 
 ####Code examples:
 Set the option with label "html3" as visible:
@@ -130,6 +157,19 @@ Set the options with values "value2" and "value3" as disabled:
 	
 Use the selector "all" to edit every option.
 
-Enable every option:
+Enable every option but don't render the changes immediately:
 
-	$("#theSelect").dynamicSelect("updateOptions","all",{"disabled":0});
+	$("#theSelect").dynamicSelect("updateOptions","all",{"disabled":0} , false );
+
+###remove
+Insert one or more new options to the select.
+
+	$("#theSelect").dynamicSelect("add", options);
+	
+####Code examples:
+Add 2 new options and set some properties:
+
+	$("#theSelect").dynamicSelect("add", [
+			{value: "11", label: "New option 1", visible: 1},
+			{value: "12", label: "New option 2", enabled: 0}
+		]);
