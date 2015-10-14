@@ -3,7 +3,7 @@
  *  CREATED ON:   10-dec-2014
  *  AUTHOR:       Luca Costanzi (luca.costanzi@gmail.be)
  *  --------------------------
- *  DESCRIPTION: Dynamically edit select objects with jquery
+ *  DESCRIPTION: Dynamically edit select objects with jquery.
  *  This plugin binds a select with a cached version of it which can be used to dynamically re-render its options. 
  *  Each option is internally stored as an object which can make use of the following properties:
  *      label:      (String)The text which goes between <option> tags.
@@ -33,6 +33,9 @@
                 });
                 opts = {values: fixedOptions};
             } else {
+                jQuery.each(options.values, function(i, o) {
+                    o.index = i;
+                });
                 opts = options;
             }
         } else {
@@ -72,14 +75,14 @@
         },
         /**
          * Updates the given option object property with a new value
-         * @param {option} The option object
+         * @param {array} The option object
          * @param {string} The property to update
          * @param {string} The new value to assign
          */
         updateObject: function(option, propertyToUpdate, newValue) {
             option[propertyToUpdate] = newValue;
         },
-        add: function(list,render) {
+        add: function(list, render) {
             opts = this.options;
             jQuery.each(list, function(i, v) {
                 if (!jQuery.isPlainObject(v))
@@ -90,7 +93,7 @@
                 opts.values.push(newOption);
             });
             if (render == undefined || render == true)
-                thisObj.setValues();
+                this.setValues();
         },
         remove: function(selectors, render) {
             var optionsToUpdate = [];
@@ -101,7 +104,6 @@
 
                     optionsToUpdate.push(thisObj.findByProperty(property, values));
                 });
-
                 if (Object.keys(selectors).length > 1) {
                     for (i = 0; i < Object.keys(selectors).length; i++) {
                         if (optionsToUpdate[i + 1] != undefined) {
@@ -112,10 +114,8 @@
                         }
                     }
                 } else {
-
                     temp = optionsToUpdate[0];
                 }
-
                 jQuery.each(temp, function(kt, optTemp) {
                     jQuery.each(thisObj.options.values, function(k, opt) {
                         if (opt != undefined && optTemp != undefined) {
@@ -200,6 +200,7 @@
                     }
                 }
             });
+
             return toReturn;
         },
         updateOptions: function(selectors, newValues, render) {
@@ -208,11 +209,14 @@
             var optionsToUpdate = [];
             var temp = [];
             thisObj = this;
+
             if (selectors !== "all") {
                 jQuery.each(selectors, function(property, values) {
                     optionsToUpdate.push(thisObj.findByProperty(property, values));
 
                 });
+
+
                 if (Object.keys(selectors).length > 1) {
                     for (i = 0; i < Object.keys(selectors).length; i++) {
                         if (optionsToUpdate[i + 1] != undefined) {
@@ -227,7 +231,9 @@
                 }
             } else {
                 temp = thisObj.options.values;
+
             }
+
             jQuery.each(temp, function(k, opt) {
                 jQuery.each(newValues, function(property, value) {
                     opt[property] = value;
@@ -241,12 +247,14 @@
             el = this.item;
             values = this.options.values;
             thisObj = this;
+
             var rightClick = (function() {
                 selValues = jQuery(select).val();
                 if (selValues != null) {
                     this.updateOptions({value: selValues}, {link: ""});
                 }
             }).bind(this);
+
             var leftClick = (function() {
                 selValues = this.item.val();
                 if (selValues != null) {
@@ -254,12 +262,15 @@
                     this.updateOptions({value: selValues}, {link: 1});
                 }
             }).bind(this);
+
             jQuery(btnObjA).bind("click", function() {
                 leftClick();
             });
+
             jQuery(btnObjB).bind("click", function() {
                 rightClick();
             });
+
         }
     };
 
