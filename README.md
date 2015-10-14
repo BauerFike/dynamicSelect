@@ -79,8 +79,43 @@ To set more fields on each option an array of objects can be passed instead.
 
 ##Options
 
+###linkSelects
+Joins the original select to a second one. Allows options to be moved from one select to the other one.
+
+	$("#theSelect").dynamicSelect("linkSelects", select , button1 , button2 );
+	
+####Code examples:
+Link the original "#theSelect" to a second element "#theSelect1". Enable button "#btnLinkR" to move the selected options from the first to the second select when clicked. "#btnLinkL" is enabled to move them back.
+
+#####HTML
+	<div id="div1">
+	    <select id="theSelect" multiple="multiple"></select>
+	</div>
+	<div id="div2">
+	    <input id="btnLinkR" type="button" value="->">
+	    <input id="btnLinkL" type="button" value="<-">
+	</div>
+	<div id="div3">
+	    <select id="theSelect1" multiple="multiple"></select>
+	</div>
+#####Javascript
+	$("#theSelect").dynamicSelect("linkSelects", "#theSelect1", "#btnLinkR", "#btnLinkL");
+	
+	
+An option can be moved from a select to the other by changing its "link" property. If "link" is equal to an empty string the option will be rendered on the first select, while if it's equal to "linked", it will be showed on the second.
+
+Move the option with label "html3" to the second select:
+
+	$("#theSelect").dynamicSelect("updateOptions",{"label":"html3"},{"link":"linked"});
+	
+Move it back to the original one:
+
+	$("#theSelect").dynamicSelect("updateOptions",{"label":"html3"},{"link":""});
+
 ###updateOptions
 Update a property of one or more options.
+
+	$("#theSelect").dynamicSelect("updateOptions", selector ,  properties );
 
 ####Code examples:
 Set the option with label "html3" as visible:
