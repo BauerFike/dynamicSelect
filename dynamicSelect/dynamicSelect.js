@@ -79,7 +79,7 @@
         updateObject: function(option, propertyToUpdate, newValue) {
             option[propertyToUpdate] = newValue;
         },
-        add: function(list) {
+        add: function(list,render) {
             opts = this.options;
             jQuery.each(list, function(i, v) {
                 if (!jQuery.isPlainObject(v))
@@ -89,7 +89,8 @@
                 newOption.index = opts.values.length;
                 opts.values.push(newOption);
             });
-            this.setValues();
+            if (render == undefined || render == true)
+                thisObj.setValues();
         },
         remove: function(selectors, render) {
             var optionsToUpdate = [];
