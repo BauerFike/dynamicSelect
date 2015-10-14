@@ -9,7 +9,7 @@ Each option is internally stored as an object which can make use of the followin
 *   classHtml: (String)The html class value.
 *   idHtml: (String)The html id value.
 *   disabled: (Boolean)1 to disable the `<option>`.
-*   visible: (Boolean)Set to 0 to not render the `<option>`.
+*   visible: (Boolean)Set to 0 to not render the `<option>`. (the option is kept in cache but not created as an html element).
 *   selected: (Boolean)Set to 1 to render this `<option>` as selected.
 
 #####Example of an option object
@@ -21,8 +21,12 @@ Each option is internally stored as an object which can make use of the followin
             idHtml: "selectId",
             disabled: 0,
             visible: 1,
-            selected: 0
+            selected: 1
         }
+        
+Which will be rendered as:
+
+	<option value="value1" class="selectClass" id="selectId" selected="selected">html1</option>
 
 ##Initialize
 
@@ -80,7 +84,7 @@ To set more fields on each option an array of objects can be passed instead.
 ##Options
 
 ###add
-Insert one or more new options to the select. The select gets re-rendered immediately with the desired order unless render is set to false (true by default).
+Insert one or more new options to the cache. The select gets re-rendered immediately with the new options unless the render parameter is set to false (true by default).
 
 	$("#theSelect").dynamicSelect("add", options, [ render ]);
 	
@@ -162,7 +166,7 @@ Enable every option but don't render the changes immediately:
 	$("#theSelect").dynamicSelect("updateOptions","all",{"disabled":0} , false );
 
 ###remove
-Remove one or more new options to the select. The select gets re-rendered immediately with the desired order unless render is set to false (true by default).
+Remove one or more options from the cache. The html select gets re-rendered immediately without the desired options unless the "render" property is set to false (true by default).
 
 	$("#theSelect").dynamicSelect("remove", selector, [ render ]);
 	
